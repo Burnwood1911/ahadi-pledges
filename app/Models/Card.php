@@ -14,7 +14,6 @@ class Card extends Model
     protected $fillable = [
         'card_no',
         'membership_id',
-        'user_id'
     ];
 
 

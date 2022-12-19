@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('pledges', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('pledge_type_id');
             $table->string('description');
             $table->decimal('amount');
-            $table->string('user_id');
-            $table->string('pledge_type_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
+            $table->foreign('pledge_type_id')->references('id')->on('pledge_types')
+                ->onDelete('cascade');
         });
     }
 

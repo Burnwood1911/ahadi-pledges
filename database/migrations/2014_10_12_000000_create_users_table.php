@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('role_id');
+            $table->unsignedInteger('jumuiya_id');
             $table->string('first_name');
             $table->string('second_name');
             $table->string('last_name');
             $table->string('profile_picture')->nullable();
             $table->string('email')->unique();
             $table->dateTime('date_of_birth');
-            $table->string('jumuiya_id');
-            $table->string('role_id');
             $table->string('gender');
             $table->string('phone');
             $table->boolean('disabled');
@@ -30,6 +30,10 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('role_id')->references('id')->on('roles')
+                ->onDelete('cascade');
+                $table->foreign('jumuiya_id')->references('id')->on('jumuiyas')
+                ->onDelete('cascade');
         });
     }
 
