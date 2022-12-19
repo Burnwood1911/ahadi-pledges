@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\PledgeType;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
-class PledgeTypeController extends Controller
+class PaymentMethodController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PledgeTypeController extends Controller
      */
     public function index()
     {
-        return Response(PledgeType::all());
+        return Response(PaymentMethod::all());
 
     }
 
@@ -27,10 +27,10 @@ class PledgeTypeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required',
+            'name' => 'required',
         ]);
 
-        PledgeType::create($validated);
+        PaymentMethod::create($validated);
 
         return Response([
             'message' => 'Successfuly created'
@@ -40,12 +40,12 @@ class PledgeTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PledgeType  $pledgeType
+     * @param  \App\Models\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return Response(PledgeType::where('id', $id)->get());
+        return Response(PaymentMethod::where('id', $id)->get());
 
     }
 
@@ -53,16 +53,16 @@ class PledgeTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PledgeType  $pledgeType
+     * @param  \App\Models\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'title' => 'required',
+            'name' => 'required',
         ]);
 
-        PledgeType::where('id', $id)->update($validated);
+        PaymentMethod::where('id', $id)->update($validated);
 
         return Response([
             'message' => 'Successfuly updated'
@@ -72,12 +72,12 @@ class PledgeTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PledgeType  $pledgeType
+     * @param  \App\Models\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        PledgeType::destroy($id);
+        PaymentMethod::destroy($id);
 
         return Response(['message' => 'Successfuly deleted'], 200);
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Role;
+use App\Models\PledgeType;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class PledgeTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return Response(Role::all());
+        return Response(PledgeType::all());
+
     }
 
     /**
@@ -26,10 +27,10 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'title' => 'required',
         ]);
 
-        Role::create($validated);
+        PledgeType::create($validated);
 
         return Response([
             'message' => 'Successfuly created'
@@ -39,28 +40,29 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\PledgeType  $pledgeType
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return Response(Role::where('id', $id)->get());
+        return Response(PledgeType::where('id', $id)->get());
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\PledgeType  $pledgeType
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'title' => 'required',
         ]);
 
-        Role::where('id', $id)->update($validated);
+        PledgeType::where('id', $id)->update($validated);
 
         return Response([
             'message' => 'Successfuly updated'
@@ -70,12 +72,12 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\PledgeType  $pledgeType
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Role::destroy($id);
+        PledgeType::destroy($id);
 
         return Response(['message' => 'Successfuly deleted'], 200);
     }

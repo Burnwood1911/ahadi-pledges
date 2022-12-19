@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\PaymentMethod;
+use App\Models\Jumuiya;
 use Illuminate\Http\Request;
 
-class PaymentMethodController extends Controller
+class JumuiyaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,9 @@ class PaymentMethodController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
-        return Response(PaymentMethod::all());
+            return Response(Jumuiya::all());
 
     }
 
@@ -30,30 +31,30 @@ class PaymentMethodController extends Controller
             'name' => 'required',
         ]);
 
-        PaymentMethod::create($validated);
+        Jumuiya::create($validated);
 
         return Response([
             'message' => 'Successfuly created'
         ], 201);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PaymentMethod  $paymentMethod
+     * @param  \App\Models\Jumuiya  $jumuiya
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return Response(PaymentMethod::where('id', $id)->get());
-
+        return Response(Jumuiya::where('id', $id)->get());
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PaymentMethod  $paymentMethod
+     * @param  \App\Models\Jumuiya  $jumuiya
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -62,7 +63,7 @@ class PaymentMethodController extends Controller
             'name' => 'required',
         ]);
 
-        PaymentMethod::where('id', $id)->update($validated);
+        Jumuiya::where('id', $id)->update($validated);
 
         return Response([
             'message' => 'Successfuly updated'
@@ -72,12 +73,12 @@ class PaymentMethodController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PaymentMethod  $paymentMethod
+     * @param  \App\Models\Jumuiya  $jumuiya
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        PaymentMethod::destroy($id);
+        Jumuiya::destroy($id);
 
         return Response(['message' => 'Successfuly deleted'], 200);
     }

@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\JumuiyaController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\PaymentMethodController;
-use App\Http\Controllers\PledgeController;
-use App\Http\Controllers\PledgeTypeController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Models\PledgeType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\PledgeController;
+use App\Http\Controllers\Api\JumuiyaController;
+use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\PledgeTypeController;
+use App\Http\Controllers\Api\PaymentMethodController;
 
 /*
 |--------------------------------------------------------------------------

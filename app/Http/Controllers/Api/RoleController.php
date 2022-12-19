@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Jumuiya;
-use GuzzleHttp\Psr7\Response;
+use App\Models\Role;
 use Illuminate\Http\Request;
-use PHPUnit\TextUI\XmlConfiguration\Logging\Junit;
 
-class JumuiyaController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +13,8 @@ class JumuiyaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
     {
-            return Response(Jumuiya::all());
-
+        return Response(Role::all());
     }
 
     /**
@@ -33,30 +29,29 @@ class JumuiyaController extends Controller
             'name' => 'required',
         ]);
 
-        Jumuiya::create($validated);
+        Role::create($validated);
 
         return Response([
             'message' => 'Successfuly created'
         ], 201);
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Jumuiya  $jumuiya
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return Response(Jumuiya::where('id', $id)->get());
+        return Response(Role::where('id', $id)->get());
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Jumuiya  $jumuiya
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -65,7 +60,7 @@ class JumuiyaController extends Controller
             'name' => 'required',
         ]);
 
-        Jumuiya::where('id', $id)->update($validated);
+        Role::where('id', $id)->update($validated);
 
         return Response([
             'message' => 'Successfuly updated'
@@ -75,12 +70,12 @@ class JumuiyaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Jumuiya  $jumuiya
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Jumuiya::destroy($id);
+        Role::destroy($id);
 
         return Response(['message' => 'Successfuly deleted'], 200);
     }

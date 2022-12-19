@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\User;
-use App\Models\Pledge;
+use App\Models\Card;
 use Illuminate\Http\Request;
-use GuzzleHttp\Psr7\Response;
+use Illuminate\Http\Response;
 
-class PledgeController extends Controller
+class CardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,21 +15,8 @@ class PledgeController extends Controller
      */
     public function index()
     {
-        return Response(Pledge::all());
+        return Response(Card::all());
     }
-
-    /**
-     * Display a listing of the resource for given user.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function users($id)
-    {
-        $pledges = Pledge::where('user_id', $id)->get();
-        return Response($pledges);
-    }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -38,17 +24,15 @@ class PledgeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $validated = $request->validate([
-            'description' => 'required',
-            'amount' => 'required',
-            'pledge_type_id' => 'required'
+            'card_no' => 'required',
+            'membership_id' => 'required',
+            'user_id' => 'required'
         ]);
 
-        $user = User::find($id);
-
-        $user->pledges()->create($validated);
+        Card::create($validated);
 
         return Response([
             'message' => 'Successfuly created'
@@ -58,12 +42,12 @@ class PledgeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pledge  $pledge
+     * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return Response(Pledge::where('id', $id)->get());
+        return Response(Card::find($id));
 
     }
 
@@ -71,17 +55,18 @@ class PledgeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pledge  $pledge
+     * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'description' => 'required',
-            'amount' => 'required',
+            'card_no' => 'required',
+            'membership_id' => 'required',
+            'user_id' => 'required'
         ]);
 
-        Pledge::where('id', $id)->update($validated);
+        Card::where('id', $id)->update($validated);
 
         return Response([
             'message' => 'Successfuly updated'
@@ -91,12 +76,12 @@ class PledgeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pledge  $pledge
+     * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Pledge::destroy($id);
+        Card::destroy($id);
 
         return Response(['message' => 'Successfuly deleted'], 200);
     }
