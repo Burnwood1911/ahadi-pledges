@@ -77,6 +77,14 @@ Route::get('/payment/pledge/{id}', [PaymentController::class, 'pledge']);
 Route::get('/payment/{id}', [PaymentController::class, 'show']);
 Route::post('/payment', [PaymentController::class, 'store']);
 
+//CARD ROUTES
+
+Route::get('/card', [JumuiyaController::class, 'index']);
+Route::get('/card/{id}', [JumuiyaController::class, 'show']);
+Route::post('/card', [JumuiyaController::class, 'store']);
+Route::patch('/card/{id}', [JumuiyaController::class, 'update']);
+Route::delete('/card/{id}', [JumuiyaController::class, 'destroy']);
+
 
 
 
