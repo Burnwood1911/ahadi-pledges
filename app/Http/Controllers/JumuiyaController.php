@@ -14,14 +14,11 @@ class JumuiyaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
 
     {
-        if ($request->wantsJson()) {
             return Response(Jumuiya::all());
-        }
-      
-        
+
     }
 
     /**

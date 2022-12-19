@@ -27,14 +27,15 @@ class PaymentController extends Controller
      */
     public function users($id)
     {
+        
         $user = User::find($id);
-        $pledges = $user->pledges()->get();
+        $pledges = $user->pledges;
 
         $payments = [];
 
         foreach($pledges as $pledge){
 
-            $pays = $pledge->payments()->get();
+            $pays = $pledge->payments;
 
             foreach($pays as $p){
 
