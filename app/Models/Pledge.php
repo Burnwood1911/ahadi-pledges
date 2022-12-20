@@ -13,7 +13,8 @@ class Pledge extends Model
     protected $fillable = [
         'description',
         'amount',
-        'pledge_type_id'
+        'pledge_type_id',
+        'deadline'
     ];
 
 
@@ -30,5 +31,11 @@ class Pledge extends Model
     public function pledgeType()
     {
         return $this->hasOne(PledgeType::class);
+    }
+
+    public function purpose()
+    
+    {
+        return $this->hasOne(Purpose::class);
     }
 }
