@@ -31,6 +31,7 @@ class User extends Authenticatable
         'jumuiya_id',
         'enabled',
         'password',
+        'card_id'
     ];
 
     /**
@@ -64,11 +65,21 @@ class User extends Authenticatable
 
     public function card()
     {
-        return $this->hasOne(Card::class);
+        return $this->hasOne(Card::class, 'id', 'card_id');
     }
 
     public function pledges()
     {
         return $this->hasMany(Pledge::class);
+    }
+
+    public function scopeFilter($query, array $filters){
+        if($filters['tag'] ?? false){
+            $query->where('first_name', 'like', '%' . request('tag') . '%')
+                ->orWhere('second_name', 'like', '%' . request('tag') . '%')
+                ->orWhere('last_name', 'like', '%' . request('tag') . '%');
+            
+        }
+
     }
 }
