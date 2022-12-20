@@ -14,7 +14,8 @@ class Pledge extends Model
         'description',
         'amount',
         'pledge_type_id',
-        'deadline'
+        'deadline',
+        'purpose_id'
     ];
 
 

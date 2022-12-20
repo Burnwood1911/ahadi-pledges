@@ -37,7 +37,6 @@ class UserController extends Controller
             'gender' => 'required',
             'phone' => 'required',
             'date_of_birth' => 'required',
-            'disabled' => 'required',
         ]);
 
         $user = User::create($validated);
