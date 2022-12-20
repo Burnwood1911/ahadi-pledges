@@ -17,10 +17,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('pledge_type_id');
+            $table->unsignedInteger('purpose_id');
             $table->string('description');
+            $table->date('deadline');
             $table->decimal('amount');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
+            $table->foreign('purpose_id')->references('id')->on('purposes')
                 ->onDelete('cascade');
             $table->foreign('pledge_type_id')->references('id')->on('pledge_types')
                 ->onDelete('cascade');

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Pledge;
 use Illuminate\Http\Request;
-use GuzzleHttp\Psr7\Response;
 
 class PledgeController extends Controller
 {
@@ -43,7 +42,9 @@ class PledgeController extends Controller
         $validated = $request->validate([
             'description' => 'required',
             'amount' => 'required',
-            'pledge_type_id' => 'required'
+            'pledge_type_id' => 'required',
+            'purpose_id' => 'required',
+            'deadline' => 'required'
         ]);
 
         $user = User::find($id);

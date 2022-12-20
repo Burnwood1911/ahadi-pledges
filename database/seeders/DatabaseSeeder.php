@@ -4,9 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Card;
 use App\Models\Jumuiya;
 use App\Models\PaymentMethod;
 use App\Models\PledgeType;
+use App\Models\Purpose;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -51,6 +53,21 @@ class DatabaseSeeder extends Seeder
         foreach($roles as $pm){
             Role::factory()->create([
                 'name' => $pm
+            ]);
+        }
+
+
+        $cards = [100, 101, 102, 103, 104];
+        foreach($cards as $pm){
+            Card::factory()->create([
+                'card_no' => $pm,
+            ]);
+        }
+
+        $purposes = ['UJENZI', 'WATOTO', 'SHULE'];
+        foreach($purposes as $pm){
+            Purpose::factory()->create([
+                'title' => $pm,
             ]);
         }
 

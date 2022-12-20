@@ -31,7 +31,7 @@ class CardController extends Controller
             'membership_id' => 'required',
             'user_id' => 'required'
         ]);
-
+        //user id nullable at start
         Card::create($validated);
 
         return Response([

@@ -29,6 +29,7 @@ class User extends Authenticatable
         'email',
         'role_id',
         'jumuiya_id',
+        'enabled',
         'password',
     ];
 
@@ -53,12 +54,17 @@ class User extends Authenticatable
 
     public function jumuiya()
     {
-        return $this->hasOne(Jumuiya::class);
+        return $this->hasOne(Jumuiya::class, 'id', 'jumuiya_id');
     }
 
     public function role()
     {
         return $this->hasOne(Role::class);
+    }
+
+    public function card()
+    {
+        return $this->hasOne(Card::class);
     }
 
     public function pledges()
