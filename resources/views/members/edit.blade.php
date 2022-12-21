@@ -42,7 +42,7 @@
                     <div class="col-lg-6">
                         <div class="row mb-3">
                             <div class="col form-group-form-primary">
-                                <label for="card_no" class="text-secondary">Community (Jumuiya)</label>
+                                <label for="jumuiya_id" class="text-secondary">Community (Jumuiya)</label>
                                 <select name="jumuiya_id" id="jumuiya_id" class="form-control bg-gradient-light">
                                     @foreach ($jumuiyas as $jumuiya)
                                         <option value="{{ $jumuiya->id }}"
@@ -56,9 +56,9 @@
 
                     <div class="col-lg-6">
                         <div class="col form-group-form-primary">
-                            <label for="card_no" class="text-secondary">Member Card No</label>
+                            <label for="card_id" class="text-secondary">Member Card No</label>
                             <div class="col ">
-                                <select name="card_no" class="form-control bg-gradient-light">
+                                <select name="card_id" class="form-control bg-gradient-light">
                                     <@foreach ($cards as $card)
                                         <option value="{{ $card->id }}"> {{ $card->card_no }} </option>
                                         @endforeach

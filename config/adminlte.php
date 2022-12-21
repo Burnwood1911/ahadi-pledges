@@ -328,22 +328,22 @@ return [
         ],
         [
             'text' => 'Pledges',
-            'url'  => 'admin/settings',
+            'url'  => '/pledges',
             'icon' => 'fas fa-fw fa-balance-scale',
         ],
         [
             'text' => 'Payments',
-            'url'  => 'admin/settings',
+            'url'  => '/payments',
             'icon' => 'fas fa-fw fa-credit-card',
         ],
         [
             'text' => 'Events',
-            'url'  => 'admin/settings',
+            'url'  => '/events',
             'icon' => 'fas fa-fw fa-calendar',
         ],
         [
             'text' => 'Cards',
-            'url'  => 'admin/settings',
+            'url'  => '/cards',
             'icon' => 'fas fa-fw fa-envelope',
         ],
         [

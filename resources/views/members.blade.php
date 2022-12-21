@@ -3,23 +3,59 @@
 
 
 @section('content')
-    <div class=" d-flex justify-content-between w-100 pt-2 pl-2">
-        <div>
-            <a href="/members/create" class="btn btn-success">Create Member</a>
-            <a href="" class="btn btn-dark ml-1">Upload Excel</a>
+<div class="">
+    <div class="d-flex flex-column pt-2">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="pl-3">
+                <a href="/members/create" class="btn btn-success">Create Member</a>
+                <button type="button" class="btn btn-dark ml-1" data-toggle="modal" data-target="#uploadExcel">
+                    Upload Excel
+                </button>
+            </div>
+            <div>
+                <!-- Modal -->
+                <div class="modal fade" id="uploadExcel" tabindex="-1" role="dialog" aria-labelledby="uploadExcelTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Upload File
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/members/upload" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+                                    <input type="file" name="file" id="file">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex align-self-end">
+                <form action="/members" class="d-flex">
+                    <div class="input-group mr-3">
+
+                        <input type="text" class="form-control" name="tag" placeholder="search" aria-label="Search"
+                            aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit"><i
+                                    class="fa fa-search"></i></button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <form action="/members" class="w-50">
-            <div class="input-group mr-4">
 
-                <input type="text" class="form-control" name="tag" placeholder="search" aria-label="Search"
-                    aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
-                </div>
 
-            </div>
-        </form>
 
     </div>
 
@@ -52,75 +88,77 @@
                         <tbody>
 
                             @foreach ($data as $item)
-                                <tr>
+                            <tr>
 
-                                    <td>{{ ucfirst($item->first_name) . ' ' . ucfirst($item->second_name) . ' ' . ucfirst($item->last_name) }}
-                                    </td>
-                                    <td>{{ $item->card->card_no ?? 'UNASIGNED' }}</td>
-                                    <td>{{ $item->jumuiya->name }}</td>
-                                    <td>{{ strtoupper($item->gender) }}</td>
-                                    <td>{{ $item->phone }}</td>
-                                    <td>{{ $item->enabled ? 'ACTIVE' : 'DISABLED' }}</td>
-                                    <td>
-                                        <a href="/members/edit/{{ $item->id }}"
-                                            class="btn btn-primary btn-sm bg-gradient-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-
-                            
-                                        <a href="/members/delete/{{ $item->id }}" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-
-                                        <a href="/members/disable/{{ $item->id }}" class="btn btn-warning btn-sm">
-                                            <i class="fa fa-lock"></i>
-                                        </a>
+                                <td>{{ ucfirst($item->first_name) . ' ' . ucfirst($item->second_name) . ' ' .
+                                    ucfirst($item->last_name) }}
+                                </td>
+                                <td>{{ $item->card->card_no ?? 'UNASIGNED' }}</td>
+                                <td>{{ $item->jumuiya->name ?? 'UNASIGNED' }}</td>
+                                <td>{{ strtoupper($item->gender) }}</td>
+                                <td>{{ $item->phone }}</td>
+                                <td>{{ $item->enabled ? 'ACTIVE' : 'DISABLED' }}</td>
+                                <td>
+                                    <a href="/members/edit/{{ $item->id }}"
+                                        class="btn btn-primary btn-sm bg-gradient-primary">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
 
 
+                                    <a href="/members/delete/{{ $item->id }}" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
 
-                                        @if ($item->card == null)
-                                            <button type="button" class="" data-toggle="modal"
-                                                data-target="#exampleModalCenter">
-                                                <i class="fa fa-credit-card"></i>
-                                            </button>
+                                    <a href="/members/disable/{{ $item->id }}" class="btn btn-warning btn-sm">
+                                        <i class="fa fa-lock"></i>
+                                    </a>
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLongTitle">Assign Card
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form action="/members/card/update/{{ $item->id }}">
-                                                            <div class="modal-body">
-                                                                <select name="card_id" id="card_id"
-                                                                    class="form-control bg-gradient-light">
-                                                                    @foreach ($cards as $card)
-                                                                        <option value="{{ $card->id }}">
-                                                                            {{ $card->card_no }} </option>
-                                                                    @endforeach
 
-                                                                </select>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Save
-                                                                    changes</button>
-                                                        </form>
-                                                    </div>
+
+                                    @if ($item->card == null)
+                                    <button type="button" class="" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        <i class="fa fa-credit-card"></i>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Assign
+                                                        Card
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
-                                            </div>
-                                        @endif
+                                                <form action="/members/card/update/{{ $item->id }}">
+                                                    <div class="modal-body">
+                                                        <select name="card_id" id="card_id"
+                                                            class="form-control bg-gradient-light">
+                                                            @foreach ($cards as $card)
+                                                            <option value="{{ $card->id }}">
+                                                                {{ $card->card_no }} </option>
+                                                            @endforeach
 
-                                    </td>
-                                </tr>
+                                                        </select>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+
+                                </td>
+                            </tr>
                             @endforeach
 
                         </tbody>
@@ -133,7 +171,8 @@
         </div>
 
     </div>
-    <div class="d-flex justify-content-center">
-        {{ $data->links() }}
-    </div>
+</div>
+<div class="d-flex justify-content-center">
+    {{ $data->links() }}
+</div>
 @endsection

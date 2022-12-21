@@ -34,9 +34,23 @@ class Pledge extends Model
         return $this->hasOne(PledgeType::class);
     }
 
+
     public function purpose()
-    
     {
-        return $this->hasOne(Purpose::class);
+        return $this->hasOne(Purpose::class, 'id', 'purpose_id');
     }
+
+
+    public function scopeFilter($query, array $filters){
+        if($filters['tag'] ?? false){
+            $query->join('users', 'pledges.user_id', '=', 'users.id')
+            ->select('users.id AS user_id', 'pledges.id AS id', 'users.first_name', 'users.second_name', 'users.last_name', 'pledges.purpose_id', 'pledges.deadline', 'pledges.amount')->where('first_name', 'like', '%' . request('tag') . '%')
+                ->orWhere('second_name', 'like', '%' . request('tag') . '%')
+                ->orWhere('last_name', 'like', '%' . request('tag') . '%');
+            
+        }
+
+    }
+
+   
 }

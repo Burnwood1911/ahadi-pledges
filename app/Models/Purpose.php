@@ -15,9 +15,8 @@ class Purpose extends Model
     ];
 
 
-
     public function pledge()
     {
-        return $this->belongsTo(Pledge::class);
+        return $this->belongsTo(Pledge::class, 'pledge_id', 'id');
     }
 }
