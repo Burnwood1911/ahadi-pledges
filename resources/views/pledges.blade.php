@@ -1,9 +1,5 @@
 @extends('adminlte::page')
 
-
-
-
-
 @section('content')
 
  <!-- Modal Delete Purpose -->
@@ -21,10 +17,10 @@
          <div class="modal-body">
             @foreach ($purposes as $purpose)
                 <div class="row d-flex flex-row">
-                    <p>{{ $purpose->title }}</p>
+                    <p class="bg-yellow p-1 w-4 rounded">{{ $purpose->title }}</p>
                     <form action="/purposes/delete/{{ $purpose->id }}" method="POST">
                         @csrf
-                        <button class="btn btn-primary ml-2" type="submit"><i class="fa fa-trash"></i></button>
+                        <button class="btn bg-red ml-2" type="submit"><i class="fa fa-trash"></i></button>
                     </form>
                 </div>
             @endforeach
@@ -83,7 +79,6 @@
             </div>
 
             <div>
-            
 
                 <div class="d-flex align-self-end">
                     <form action="/pledges" class="d-flex">
@@ -100,9 +95,6 @@
                     </form>
                 </div>
             </div>
-
-
-
 
         </div>
 
@@ -127,10 +119,8 @@
                                     <th>Amount</th>
                                     <th>Deadline</th>
                                     <th>Actions</th>
-
                                 </tr>
                             </thead>
-
                             <tbody>
 
                                 @foreach ($pledges as $pledge)
@@ -139,7 +129,7 @@
                                     <td>{{ $pledge->id }}</td>
                                     <td>{{ ucfirst($pledge->user->first_name) . ' ' .
                                         ucfirst($pledge->user->second_name) . ' ' . ucfirst($pledge->user->last_name) }}
-
+                                    </td>
                                     <td>{{ $pledge->purpose->title }}</td>
                                     <td>{{ $pledge->amount }}</td>
                                     <td>{{ $pledge->deadline }}</td>

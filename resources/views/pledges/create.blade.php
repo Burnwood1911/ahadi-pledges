@@ -28,7 +28,7 @@
 
 
                     <div class="col-lg-6">
-                        <div class="col form-group-form-primary">
+                        <div class="col form-group-form-primary mb-3">
                             <label for="livesearch" class="text-secondary">User</label>
                             <div class="col">
                                 <select class="livesearch form-control p-3" name="livesearch" id="livesearch"></select>
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <div class="col form-group-form-primary">
+                        <div class="col form-group-form-primary mb-3">
                             <label for="purpose_id" class="text-secondary">Purpose</label>
                             <div class="col ">
                                 <select name="purpose_id" id="purpose_id" class="form-control bg-gradient-light">
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <div class="col form-group-form-primary">
+                        <div class="col form-group-form-primary mb-3">
                             <label for="purpose_id" class="text-secondary">Pledge Type</label>
                             <div class="col ">
                                 <select name="pledge_type_id" id="pledge_type_id" class="form-control bg-gradient-light">
