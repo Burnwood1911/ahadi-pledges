@@ -26,7 +26,7 @@ class Pledge extends Model
 
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class, 'id', 'payment_id');
     }
 
     public function pledgeType()

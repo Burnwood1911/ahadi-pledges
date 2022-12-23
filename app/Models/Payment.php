@@ -20,11 +20,11 @@ class Payment extends Model
 
     public function pledge()
     {
-        return $this->belongsTo(Pledge::class);
+        return $this->belongsTo(Pledge::class, 'pledge_id', 'id');
     }
 
     public function payment_method()
     {
-        return $this->hasOne(PaymentMethod::class);
+        return $this->hasOne(PaymentMethod::class, 'id', 'payment_method_id');
     }
 }

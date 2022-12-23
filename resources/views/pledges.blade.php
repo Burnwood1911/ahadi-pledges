@@ -75,27 +75,22 @@
                 <button type="button" class="btn btn-dark ml-1" data-toggle="modal" data-target="#deletePurpose">
                     Delete Purpose
                 </button>
-                
             </div>
 
             <div>
-
                 <div class="d-flex align-self-end">
                     <form action="/pledges" class="d-flex">
                         <div class="input-group mr-3">
-
                             <input type="text" class="form-control" name="tag" placeholder="search" aria-label="Search"
                                 aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="submit"><i
                                         class="fa fa-search"></i></button>
                             </div>
-
                         </div>
                     </form>
                 </div>
             </div>
-
         </div>
 
 
@@ -151,16 +146,13 @@
                                     </td>
                                 </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>
 
-
                 </div>
 
             </div>
-
         </div>
     </div>
     <div class="d-flex justify-content-center">
